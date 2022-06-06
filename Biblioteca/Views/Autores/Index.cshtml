@@ -1,0 +1,49 @@
+@model IEnumerable<Biblioteca.Models.Autor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+<form asp-controller="Autores" asp-action="Index" method="get">
+    <p>
+        Titulo: <input type="text" name="SearchString" />
+        <input type="submit" value="Pesquisar" />
+    </p>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Classificacao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeCompleto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Classificacao)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AutorID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AutorID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AutorID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
